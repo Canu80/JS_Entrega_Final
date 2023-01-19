@@ -1,20 +1,19 @@
-//Agregar array de productos del JSON
-
-fetchData = async () => {
-  try {
-    res = await fetch("http://tusdeseos.cl/api.json");
-    data = await res.json();
-    pintarProductos(data);
-    detectarBotones(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 //DOM
 document.addEventListener("DOMContentLoaded", () => {
   fetchData();
 });
+
+//Agregar array de productos del JSON
+
+fetchData = async () => {
+
+    res = await fetch("https://canu80.github.io/JS_Entrega_Final/api.json");
+    data = await res.json();
+    pintarProductos(data);
+    detectarBotones(data);
+
+};
+
 
 const contendorProductos = document.querySelector("#contenedor-productos");
 const pintarProductos = (data) => {
@@ -30,6 +29,8 @@ const pintarProductos = (data) => {
   });
   contendorProductos.appendChild(fragment);
 };
+
+
 
 let carrito = {};
 
@@ -65,8 +66,7 @@ const pintarCarrito = () => {
     template.querySelector("th").textContent = producto.id;
     template.querySelectorAll("td")[0].textContent = producto.title;
     template.querySelectorAll("td")[1].textContent = producto.cantidad;
-    template.querySelector("span").textContent =
-      producto.precio * producto.cantidad;
+    template.querySelector("span").textContent = producto.precio * producto.cantidad;
 
     //Botones
     template.querySelector(".btn-info").dataset.id = producto.id;
